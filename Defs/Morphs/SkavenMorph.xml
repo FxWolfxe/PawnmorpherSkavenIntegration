@@ -18,6 +18,7 @@
 			<graphicsSettings>
 				<skinColorOverride>(110,95,82)</skinColorOverride>
 			</graphicsSettings>
+			<explicitHybridRace>Alien_Skaven</explicitHybridRace>
 		</raceSettings>
 		<transformSettings>
 			<transformationMemory>SkavenTransformationMemory</transformationMemory>
