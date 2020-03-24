@@ -1,0 +1,35 @@
+<ModMetaData>
+	<name>Pawnmorpher: Skaven Integration</name>
+	<author>Mic</author>
+	<supportedVersions>
+		<li>1.1</li>
+	</supportedVersions>
+	<description>
+		Adds the ability to turn humans into Skaven
+	</description>
+	<packageId>tachyonite.pawnmorphercults</packageId>
+	<modDependencies>
+		<li>
+			<packageId>erdelf.HumanoidAlienRaces</packageId>
+			<displayName>Humanoid Alien Races 2.0</displayName>
+			<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=839005762</steamWorkshopUrl>
+		</li>
+		<li>
+			<packageId>tachyonite.pawnmorpher</packageId>
+			<displayName>Pawnmorpher</displayName>
+			<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=1786466855</steamWorkshopUrl>
+		</li>
+		<li>
+			<packageID></packageID>
+			<displayName>Kompadt.Warhammer.Skaven</displayName>
+			<steamWorkshupUrl>https://steamcommunity.com/workshop/filedetails/?id=1706345856</steamWorkshupUrl>
+		</li>
+	</modDependencies>
+	<loadBefore>
+	</loadBefore>
+	<loadAfter>
+		<li>erdelf.HumanoidAlienRaces</li>
+		<li>tachyonite.pawnmorpher</li>
+		<li>Kompadt.Warhammer.Skaven</li>
+	</loadAfter>
+</ModMetaData>
