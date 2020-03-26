@@ -7,7 +7,7 @@
 	<description>
 		Adds the ability to turn humans into Skaven
 	</description>
-	<packageId>tachyonite.pawnmorphercults</packageId>
+	<packageId>ironwolf.pawnmorpherskaven</packageId>
 	<modDependencies>
 		<li>
 			<packageId>erdelf.HumanoidAlienRaces</packageId>
@@ -20,9 +20,9 @@
 			<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=1786466855</steamWorkshopUrl>
 		</li>
 		<li>
-			<packageID></packageID>
-			<displayName>Kompadt.Warhammer.Skaven</displayName>
-			<steamWorkshupUrl>https://steamcommunity.com/workshop/filedetails/?id=1706345856</steamWorkshupUrl>
+			<packageId>Kompadt.Warhammer.Skaven</packageId>
+			<displayName>Warhammer: Skaven</displayName>
+			<steamWorkshopUrl>https://steamcommunity.com/workshop/filedetails/?id=1706345856</steamWorkshopUrl>
 		</li>
 	</modDependencies>
 	<loadBefore>
