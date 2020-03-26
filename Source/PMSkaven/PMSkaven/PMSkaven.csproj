@@ -137,9 +137,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AI\JobDriver_PreformTfRitual.cs" />
+    <Compile Include="AI\JobDriver_TakeToAlter.cs" />
+    <Compile Include="AI\JobGiver_PreformTfRitual.cs" />
+    <Compile Include="Building_SkavenAlter.cs" />
+    <Compile Include="Gatherings\LordJob_TfRitual.cs" />
+    <Compile Include="Gatherings\LordToilData_TfRitual.cs" />
+    <Compile Include="Gatherings\LordToil_TfRitual.cs" />
+    <Compile Include="Gatherings\Worker_TfRitual.cs" />
+    <Compile Include="LordInitFailedException.cs" />
     <Compile Include="PMModInit.cs" />
     <Compile Include="PMSkavenMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PSDutyDefOf.cs" />
+    <Compile Include="PSHediffDefOf.cs" />
+    <Compile Include="PSJobDefOf.cs" />
+    <Compile Include="PSThingDefOf.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

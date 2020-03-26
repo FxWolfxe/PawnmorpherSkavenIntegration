@@ -1,0 +1,22 @@
+<Defs>
+    <DutyDef>
+        <defName>PerformTfRitual</defName>
+        <socialModeMax>Off</socialModeMax>
+        <thinkNode Class="ThinkNode_Priority">
+          <subNodes>
+            <!-- Goto my spot -->
+            <li Class="JobGiver_GotoTravelDestination">
+              <exactCell>true</exactCell>
+              <locomotionUrgency>Walk</locomotionUrgency>
+            </li>
+    
+            <!-- Arrived -->
+            <li Class="ThinkNode_ConditionalAtDutyLocation">
+              <subNodes>
+                <li Class="PMSkaven.AI.JobGiver_PreformTfRitual" />
+              </subNodes>
+            </li>
+          </subNodes>
+        </thinkNode>
+      </DutyDef>
+</Defs>

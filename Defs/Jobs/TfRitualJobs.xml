@@ -1,0 +1,15 @@
+<Defs>
+    <JobDef>
+        <defName>PreformTfRitual</defName>
+        <driverClass>PMSkaven.AI.JobDriver_PreformTfRitual</driverClass>
+        <reportString>talking.</reportString>
+        <casualInterruptible>false</casualInterruptible>
+    </JobDef>
+
+    <JobDef>
+        <defName>TakeTargetToAlter</defName>
+        <driverClass>PMSkaven.AI.JobDriver_PreformTfRitual</driverClass>
+        <reportString>talking.</reportString>
+        <casualInterruptible>false</casualInterruptible>
+    </JobDef>
+</Defs>

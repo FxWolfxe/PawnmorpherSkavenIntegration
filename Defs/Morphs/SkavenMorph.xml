@@ -13,7 +13,6 @@
 			<li>Rodent</li>
 		</categories>
 		<fullTransformation>PawnmorphSkavenTF</fullTransformation>
-		<partialTransformation>PawnmorphSkavenTFPartial</partialTransformation>
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(110,95,82)</skinColorOverride>

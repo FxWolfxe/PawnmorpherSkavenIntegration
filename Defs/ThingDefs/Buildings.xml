@@ -2,6 +2,8 @@
     <ThingDef ParentName="TableGatherSpotBase">
         <defName>SkavenAlter</defName>
         <label>skaven alter</label>
+        <thingClass>PMSkaven.Building_SkavenAlter</thingClass>
+        <hasInteractionCell>true</hasInteractionCell>
         <graphicData>
           <texPath>Things/Building/Furniture/Table1x2</texPath>
           <graphicClass>Graphic_Multi</graphicClass>

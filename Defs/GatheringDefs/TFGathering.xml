@@ -1,0 +1,17 @@
+<Defs>
+    <GatheringDef>
+        <defName>SkavenTFGathering</defName>
+        <label>tf ritual</label>
+        <randomSelectionWeight>1</randomSelectionWeight>
+        <gatherSpotDefs>
+            <li>SkavenAlter</li>
+        </gatherSpotDefs>
+        <letterTitle>Party</letterTitle>
+        <letterText>{ORGANIZER_labelShort} is throwing a party! Everyone who goes will gain recreation and social energy, and a lasting positive mood boost.</letterText>
+        <calledOffMessage>The party has been called off.</calledOffMessage>
+        <finishedMessage>The party has finished.</finishedMessage>
+        <duty>Party</duty>
+        <workerClass>PMSkaven.Gatherings.Worker_TfRitual</workerClass>
+
+    </GatheringDef>
+</Defs>
