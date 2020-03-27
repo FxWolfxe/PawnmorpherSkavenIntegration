@@ -1,0 +1,43 @@
+<LanguageData>
+
+
+    <SkavenTFRitualGizmoLabel>Perform 13th Spell</SkavenTFRitualGizmoLabel>
+    <SkavenTFRItualGizmoNoPrisoners>No acceptable prisoners</SkavenTFRItualGizmoNoPrisoners>
+    <SkavenTFRitualGizmoDescription>Preform 13 Spell</SkavenTFRitualGizmoDescription>
+
+    <!-- these are for when the ritual starts  
+        vars 
+        {organizer} - the skaven who started the ritual 
+        {target} - the pawn who gets tf'd 
+    -->
+    <SkavenTFRitualStartLabel>TODO</SkavenTFRitualStartLabel>
+    <SkavenTFRitualStartDescription>TODO</SkavenTFRitualStartDescription>
+
+    <!-- these are for the letter that shows up when the ritual cannot start or is interupted  
+        vars 
+        {organizer} - the skaven who started the ritual 
+        {target} - the pawn who gets tf'd 
+    -->
+    <SkavenTFRitualCalledOffLabel>TODO</SkavenTFRitualCalledOffLabel>
+    <SkavenTFRitualCalledOffDescription>TODO</SkavenTFRitualCalledOffDescription>
+
+
+    <!-- these are for the letter that shows up when the ritual is a success   
+        vars 
+        {organizer} - the skaven who started the ritual
+        {target} - the pawn who gets tf'd  
+    -->
+
+    <SkavenTFRitualGoodEndLabel>TODO</SkavenTFRitualGoodEndLabel>
+    <SkavenTFRitualGoodEndDescription>TODO</SkavenTFRitualGoodEndDescription>
+
+
+    <!-- these are for the letter that shows up when the ritual is a failure (assuming that's possible)    
+        vars 
+        {organizer} - the skaven who started the ritual
+        {target} - the pawn who gets tf'd  
+    
+    -->
+    <SkavenTFRitualBadEndLabel>TODO</SkavenTFRitualBadEndLabel>
+    <SkavenTFRitualBadEndDescription>TODO</SkavenTFRitualBadEndDescription>
+</LanguageData>
