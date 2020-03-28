@@ -154,6 +154,8 @@
     <Compile Include="PSJobDefOf.cs" />
     <Compile Include="PSThingDefOf.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Utilities\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

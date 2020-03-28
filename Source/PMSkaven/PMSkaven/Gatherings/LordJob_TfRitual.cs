@@ -11,6 +11,12 @@ namespace PMSkaven.Gatherings
 {
     public class LordJob_TfRitual : LordJob_Joinable_Speech
     {
+        private const string CALLED_OFF_LABEL = "SkavenTFRitualCalledOffLabel";
+        private const string CALLED_OFF_DESCRIPTION = "SkavenTFRitualCalledOffDescription";
+        private const string GOOD_END_DESCRIPTION = "SkavenTFRitualGoodEndDescription";
+        private const string BAD_END_DESCRIPTION = "SkavenTFRitualBadEndDescription";
+        private const string GOOD_END_LABEL = "SkavenTFRitualGoodEndLabel";
+        private const string BAD_END_LABEL = "SkavenTFRitualBadEndLabel";
         public Pawn target; 
 
         public LordJob_TfRitual(IntVec3 gatherSpot, Pawn organizer,  Pawn target, GatheringDef gatheringDef) : base(gatherSpot, organizer,
@@ -47,10 +53,39 @@ namespace PMSkaven.Gatherings
             return stateGraph;
         }
 
+        TaggedString TranslateString(string str, bool capitalizeFirst=true)
+        {
+            var s = str.Translate(organizer.Named(nameof(organizer)), target.Named(nameof(target)));
+            if (capitalizeFirst) s = s.CapitalizeFirst();
+            return s; 
+        }
+
 
         protected override void ApplyOutcome(float progress)
         {
-            base.ApplyOutcome(progress);
+            if (progress < 0.5)
+            {
+                Find.LetterStack.ReceiveLetter(TranslateString(CALLED_OFF_LABEL),
+                                               TranslateString(CALLED_OFF_DESCRIPTION),
+                                               LetterDefOf.NegativeEvent, organizer);
+            }
+            else
+            {
+                //TODO figure out what causes a 'bad' ending 
+                var goodEvent = true;
+
+                TaggedString text = goodEvent
+                    ? TranslateString(GOOD_END_DESCRIPTION, false)
+                    : TranslateString(BAD_END_DESCRIPTION, false);
+
+                TaggedString label = goodEvent
+                    ? TranslateString(GOOD_END_LABEL)
+                    : TranslateString(BAD_END_LABEL);
+
+                Find.LetterStack.ReceiveLetter(label, text,
+                                               goodEvent ? LetterDefOf.PositiveEvent : LetterDefOf.NegativeEvent,
+                                               new LookTargets(new []{organizer,target}));
+            }
 
             if (progress > 0.5f && target != null && target.Faction != Faction.OfPlayer)
             {
@@ -64,6 +99,7 @@ namespace PMSkaven.Gatherings
             }
 
         }
+
 
         public override void ExposeData()
         {

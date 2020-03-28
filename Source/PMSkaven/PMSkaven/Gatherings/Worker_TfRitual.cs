@@ -2,11 +2,11 @@
 // last updated 03/26/2020  2:35 PM
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Pawnmorph;
 using Pawnmorph.Utilities;
 using RimWorld;
-using RimWorld.Planet;
 using Verse;
 using Verse.AI.Group;
 
@@ -17,32 +17,41 @@ namespace PMSkaven.Gatherings
         public override bool CanExecute(Map map, Pawn organizer = null)
         {
             bool any = PawnsFinder.AllMaps_PrisonersOfColony.Any(IsValidTarget);
-            if (!any)
-            {
-                Log.Message("unable to find suitable prisoner"); 
-            }
+            if (!any) Log.Message("unable to find suitable prisoner");
             return base.CanExecute(map, organizer)
                 && any;
         }
 
-        protected override Pawn FindOrganizer(Map map)
+        public override bool TryExecute(Map map, Pawn organizer = null)
         {
-            var p = base.FindOrganizer(map);
-            if (p == null)
-            {
-                Log.Message("Unable to find organizer");
-            }
+            if (organizer == null)
+                organizer = FindOrganizer(map);
+            IntVec3 spot;
+            if (organizer == null || !TryFindGatherSpot(organizer, out spot))
+                return false;
 
-            return p; 
+            Pawn target = PawnsFinder.AllMaps_PrisonersOfColony.Where(IsValidTarget).FirstOrDefault();
+            if (target == null) return false;
+
+            LordJob lordJob1 = CreateLordJob(spot, organizer, target);
+            Faction faction = organizer.Faction;
+            LordJob lordJob2 = lordJob1;
+            Map map1 = organizer.Map;
+            Pawn[] pawnArray;
+            if (!lordJob1.OrganizerIsStartingPawn)
+                pawnArray = null;
+            else
+                pawnArray = new Pawn[1] {organizer};
+            LordMaker.MakeNewLord(faction, lordJob2, map1, pawnArray);
+            SendLetter(spot, organizer, target);
+            return true;
         }
 
-        protected override LordJob CreateLordJob(IntVec3 spot, Pawn organizer)
+        protected LordJob CreateLordJob(IntVec3 spot, Pawn organizer, Pawn target)
         {
             try
             {
-                var target = PawnsFinder.AllMaps_PrisonersOfColony.First(IsValidTarget);
-
-                return new LordJob_TfRitual(spot, organizer, target, this.def);
+                return new LordJob_TfRitual(spot, organizer, target, def);
             }
             catch (Exception e)
             {
@@ -52,31 +61,49 @@ namespace PMSkaven.Gatherings
             }
         }
 
-     
+        protected override Pawn FindOrganizer(Map map)
+        {
+            Pawn p = base.FindOrganizer(map);
+            if (p == null) Log.Message("Unable to find organizer");
+
+            return p;
+        }
+
+        protected void SendLetter(IntVec3 spot, Pawn organizer, Pawn target)
+        {
+            string letterLabel = def.letterTitle;
+
+
+            TaggedString letterText = def.letterText.Formatted(
+                                                               organizer.Named(nameof(organizer)),
+                                                               target.Named(nameof(target)));
+            Find.LetterStack.ReceiveLetter( letterLabel, letterText, LetterDefOf.PositiveEvent,
+                                           new TargetInfo(spot, organizer.Map));
+
+        }
+
 
         protected override bool TryFindGatherSpot(Pawn organizer, out IntVec3 spot)
         {
-            var gatherSpot = Find.CurrentMap?.gatherSpotLister;
+            GatherSpotLister gatherSpot = Find.CurrentMap?.gatherSpotLister;
 
             if (gatherSpot == null)
             {
-                spot = default; 
+                spot = default;
                 return false;
             }
 
             foreach (CompGatherSpot compGatherSpot in gatherSpot.activeSpots.MakeSafe())
-            {
                 if (compGatherSpot.parent is Building_SkavenAlter)
                 {
-                    var p = compGatherSpot.parent;
+                    ThingWithComps p = compGatherSpot.parent;
                     spot = p.InteractionCell;
-                    return true; 
+                    return true;
                 }
-            }
-           
-         
-            spot = default; 
-            return false; 
+
+
+            spot = default;
+            return false;
         }
 
 

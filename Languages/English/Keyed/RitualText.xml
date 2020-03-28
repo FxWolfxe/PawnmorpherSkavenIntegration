@@ -5,13 +5,6 @@
     <SkavenTFRItualGizmoNoPrisoners>No acceptable prisoners</SkavenTFRItualGizmoNoPrisoners>
     <SkavenTFRitualGizmoDescription>Preform 13 Spell</SkavenTFRitualGizmoDescription>
 
-    <!-- these are for when the ritual starts  
-        vars 
-        {organizer} - the skaven who started the ritual 
-        {target} - the pawn who gets tf'd 
-    -->
-    <SkavenTFRitualStartLabel>TODO</SkavenTFRitualStartLabel>
-    <SkavenTFRitualStartDescription>TODO</SkavenTFRitualStartDescription>
 
     <!-- these are for the letter that shows up when the ritual cannot start or is interupted  
         vars 
