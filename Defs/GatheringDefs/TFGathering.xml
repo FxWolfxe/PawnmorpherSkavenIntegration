@@ -6,7 +6,7 @@
         <gatherSpotDefs>
             <li>SkavenAlter</li>
         </gatherSpotDefs>
-        <SkavenTFRitualStartLabel>The Ritual Begins...</SkavenTFRitualStartLabel>
+        <letterTitle>The Ritual Begins...</letterTitle>
         <letterText>After dragging the (un)fortunate {target_nameDef} to the Table of Thirteen, {organizer} begins the dreaded incantations,
             seeking the malevolent Horned Rat's Favour in this endeavor. A blessing to be brought upon {target_nameDef} to begin their change and bring 
             them into the fold as one of the Horned One's Children. The ritual is excrutiating, as evidenced by the prisoner's screams of anguish, 
