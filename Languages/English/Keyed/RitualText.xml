@@ -1,9 +1,10 @@
 <LanguageData>
 
 
-    <SkavenTFRitualGizmoLabel>Perform 13th Spell</SkavenTFRitualGizmoLabel>
+
+    <SkavenTFRitualGizmoLabel>Perform the Thirteenth Spell</SkavenTFRitualGizmoLabel>
     <SkavenTFRItualGizmoNoPrisoners>No acceptable prisoners</SkavenTFRItualGizmoNoPrisoners>
-    <SkavenTFRitualGizmoDescription>Preform 13 Spell</SkavenTFRitualGizmoDescription>
+    <SkavenTFRitualGizmoDescription>Perform the Thirteenth Spell</SkavenTFRitualGizmoDescription>
 
 
     <!-- these are for the letter that shows up when the ritual cannot start or is interupted  
@@ -11,8 +12,10 @@
         {organizer} - the skaven who started the ritual 
         {target} - the pawn who gets tf'd 
     -->
-    <SkavenTFRitualCalledOffLabel>TODO</SkavenTFRitualCalledOffLabel>
-    <SkavenTFRitualCalledOffDescription>TODO</SkavenTFRitualCalledOffDescription>
+    <SkavenTFRitualCalledOffLabel>Unable to Continue</SkavenTFRitualCalledOffLabel>
+    <SkavenTFRitualCalledOffDescription>The Horned Rat has looked away from your skaven, the ritual has been called off because without His Favour, it simply can not proceed.
+
+		Perhaps one of your skaven did not show for it, or they left too early. Either way, it is best not to let it happen again, lest His sinister putridity fall upon your skaven.</SkavenTFRitualCalledOffDescription>
 
 
     <!-- these are for the letter that shows up when the ritual is a success   
@@ -21,8 +24,8 @@
         {target} - the pawn who gets tf'd  
     -->
 
-    <SkavenTFRitualGoodEndLabel>TODO</SkavenTFRitualGoodEndLabel>
-    <SkavenTFRitualGoodEndDescription>TODO</SkavenTFRitualGoodEndDescription>
+    <SkavenTFRitualGoodEndLabel>A Great Success!</SkavenTFRitualGoodEndLabel>
+    <SkavenTFRitualGoodEndDescription>Truly, His terrible presence has blessed your skaven, for the great Horned Rat chose to show His Favour upon {target_nameDef} and make them reborn as one of His Children. All glory to the Horned One!</SkavenTFRitualGoodEndDescription>
 
 
     <!-- these are for the letter that shows up when the ritual is a failure (assuming that's possible)    
@@ -31,6 +34,6 @@
         {target} - the pawn who gets tf'd  
     
     -->
-    <SkavenTFRitualBadEndLabel>TODO</SkavenTFRitualBadEndLabel>
-    <SkavenTFRitualBadEndDescription>TODO</SkavenTFRitualBadEndDescription>
+    <SkavenTFRitualBadEndLabel>The Horned Rat is Displeased</SkavenTFRitualBadEndLabel>
+    <SkavenTFRitualBadEndDescription>Your worthless skaven have messed up the ritual in a most egregious manner! They must be punished for losing the Horned One's Favour, toss them to the slaverats for what meager morsels they might provide! This affront can not be allowed to happen again!</SkavenTFRitualBadEndDescription>
 </LanguageData>
