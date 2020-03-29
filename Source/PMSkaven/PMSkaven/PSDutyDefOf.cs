@@ -15,6 +15,8 @@ namespace PMSkaven
             DefOfHelper.EnsureInitializedInCtor(typeof(DutyDef)); 
         }
 
-        public static DutyDef PerformTfRitual; 
+        public static DutyDef PerformTfRitual;
+
+        public static DutyDef SpectateRitual; 
     }
 }

@@ -26,23 +26,25 @@ namespace PMSkaven.Gatherings
                 return PSDutyDefOf.PerformTfRitual.hook; 
             }
 
-            return DutyDefOf.Spectate.hook; 
+            return PSDutyDefOf.SpectateRitual.hook; 
         }
 
         public override void UpdateAllDuties()
         {
+            var firstThing = spot.GetFirstThing<Building_SkavenAlter>(base.Map);
+
             for (var index = 0; index < lord.ownedPawns.Count; index++)
             {
                 Pawn pawn = lord.ownedPawns[index];
+
                 if (pawn == organizer)
                 {
-                    var firstThing = spot.GetFirstThing<Building_SkavenAlter>(base.Map);
                     pawn.mindState.duty = new PawnDuty(PSDutyDefOf.PerformTfRitual, spot, firstThing);
                     pawn.jobs.EndCurrentJob(JobCondition.InterruptForced);
                 }
                 else
                 {
-                    PawnDuty pawnDuty = new PawnDuty(DutyDefOf.Spectate)
+                    PawnDuty pawnDuty = new PawnDuty(PSDutyDefOf.SpectateRitual, spot , firstThing)
                     {
                         spectateRect = Data.spectateRect, spectateRectAllowedSides = Data.spectateRectAllowedSides
                     };

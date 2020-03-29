@@ -4,10 +4,12 @@
         <label>skaven alter</label>
         <thingClass>PMSkaven.Building_SkavenAlter</thingClass>
         <hasInteractionCell>true</hasInteractionCell>
+        <interactionCellOffset>(0,0,1)</interactionCellOffset>
+        <rotatable>false</rotatable>
         <graphicData>
-          <texPath>Things/Building/Furniture/Table1x2</texPath>
+          <texPath>Things/Building/Furniture/Table3x3</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
-          <drawSize>(3,4)</drawSize>
+          <drawSize>(5, 5)</drawSize>
           <damageData>
             <cornerTL>Damage/Corner</cornerTL>
             <cornerTR>Damage/Corner</cornerTR>
@@ -15,7 +17,7 @@
             <cornerBR>Damage/Corner</cornerBR>
           </damageData>
         </graphicData>
-        <uiIconScale>0.8</uiIconScale>
+        <uiIconScale>0.9</uiIconScale>
         <statBases>
           <MaxHitPoints>75</MaxHitPoints>
           <WorkToBuild>750</WorkToBuild>
@@ -23,7 +25,7 @@
           <Flammability>1.0</Flammability>
           <Beauty>0.5</Beauty>
         </statBases>
-        <size>(1,2)</size>
+        <size>(3,3)</size>
         <costStuffCount>28</costStuffCount>
       </ThingDef>
 </Defs>

@@ -14,6 +14,7 @@ namespace PMSkaven
             DefOfHelper.EnsureInitializedInCtor(typeof(JobDef));
         }
 
-        public static JobDef PreformTfRitual; 
+        public static JobDef PreformTfRitual;
+        public static JobDef SpectateRitual; 
     }
 }

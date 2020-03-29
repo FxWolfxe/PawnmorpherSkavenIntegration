@@ -138,8 +138,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AI\JobDriver_PreformTfRitual.cs" />
+    <Compile Include="AI\JobDriver_SpectateRitual.cs" />
     <Compile Include="AI\JobDriver_TakeToAlter.cs" />
     <Compile Include="AI\JobGiver_PreformTfRitual.cs" />
+    <Compile Include="AI\JobGiver_SpectateRitual.cs" />
+    <Compile Include="AI\ThinkNode_ConditionOneOfEleven.cs" />
     <Compile Include="Building_SkavenAlter.cs" />
     <Compile Include="Gatherings\LordJob_TfRitual.cs" />
     <Compile Include="Gatherings\LordToilData_TfRitual.cs" />

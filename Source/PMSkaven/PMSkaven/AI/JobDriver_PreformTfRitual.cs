@@ -23,14 +23,24 @@ namespace PMSkaven.AI
 
         public static readonly Texture2D moteIcon = ContentFinder<Texture2D>.Get("Things/Mote/SpeechSymbols/Speech");
 
+        private Pawn Takee => (Pawn) job.GetTarget(TakeeIndex); 
+
         private Building_SkavenAlter Throne => (Building_SkavenAlter)base.TargetThingA;
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
+            
             var reserved =  pawn.Reserve(Throne, job, 1, -1, null, errorOnFailed);
             if (!reserved)
             {
                 Log.Message("cannot reserve alter");
+                return false;
+            }
+
+            reserved = (pawn.Reserve(Takee, job, 1, -1, null, errorOnFailed));
+            if (!reserved)
+            {
+                Log.Message($"could not reserve takee {Takee.Name}");
             }
 
             return reserved; 

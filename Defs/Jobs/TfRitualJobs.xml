@@ -12,4 +12,10 @@
         <reportString>talking.</reportString>
         <casualInterruptible>false</casualInterruptible>
     </JobDef>
+
+    <JobDef>
+        <defName>SpectateRitual</defName>
+        <driverClass>PMSkaven.AI.JobDriver_SpectateRitual</driverClass>
+        <reportString>performing ritual.</reportString>
+      </JobDef>
 </Defs>

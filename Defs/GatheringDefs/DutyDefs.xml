@@ -19,4 +19,19 @@
           </subNodes>
         </thinkNode>
       </DutyDef>
+
+      <DutyDef>
+        <defName>SpectateRitual</defName>
+        <hook>MediumPriority</hook>
+        <socialModeMax>Off</socialModeMax>
+        <thinkNode Class="ThinkNode_Priority">
+          <subNodes>
+            
+            <li Class="PMSkaven.AI.JobGiver_SpectateRitual" />
+            
+            <!-- Spectate -->
+            <li Class="JobGiver_SpectateDutySpectateRect" />
+          </subNodes>
+        </thinkNode>
+      </DutyDef>
 </Defs>

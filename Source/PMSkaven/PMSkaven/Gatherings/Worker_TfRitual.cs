@@ -14,14 +14,23 @@ namespace PMSkaven.Gatherings
 {
     public class Worker_TfRitual : GatheringWorker_Speech
     {
+        public const int PARTICIPANT_COUNT = 4;
+
         public override bool CanExecute(Map map, Pawn organizer = null)
         {
             bool any = PawnsFinder.AllMaps_PrisonersOfColony.Any(IsValidTarget);
             if (!any) Log.Message("unable to find suitable prisoner");
             return base.CanExecute(map, organizer)
-                && any;
+                && any
+                && map.mapPawns.FreeColonists.Count(IsValidParticipant) >= PARTICIPANT_COUNT;
         }
 
+        bool IsValidParticipant(Pawn pawn)
+        {
+            if (!pawn.IsColonist) return false;
+            return pawn.def == PSThingDefOf.Alien_Skaven; 
+        }
+        
         public override bool TryExecute(Map map, Pawn organizer = null)
         {
             if (organizer == null)

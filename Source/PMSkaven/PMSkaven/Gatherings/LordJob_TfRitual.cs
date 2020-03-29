@@ -11,18 +11,19 @@ namespace PMSkaven.Gatherings
 {
     public class LordJob_TfRitual : LordJob_Joinable_Speech
     {
+
+
         private const string CALLED_OFF_LABEL = "SkavenTFRitualCalledOffLabel";
         private const string CALLED_OFF_DESCRIPTION = "SkavenTFRitualCalledOffDescription";
         private const string GOOD_END_DESCRIPTION = "SkavenTFRitualGoodEndDescription";
         private const string BAD_END_DESCRIPTION = "SkavenTFRitualBadEndDescription";
         private const string GOOD_END_LABEL = "SkavenTFRitualGoodEndLabel";
         private const string BAD_END_LABEL = "SkavenTFRitualBadEndLabel";
-        public Pawn target; 
-
-        public LordJob_TfRitual(IntVec3 gatherSpot, Pawn organizer,  Pawn target, GatheringDef gatheringDef) : base(gatherSpot, organizer,
+        public Pawn target;
+        public LordJob_TfRitual(IntVec3 gatherSpot,  Pawn organizer,  Pawn target, GatheringDef gatheringDef) : base(gatherSpot, organizer,
                                                                                                       gatheringDef)
         {
-            this.target = target; 
+            this.target = target;
         }
 
         public override StateGraph CreateGraph()
@@ -51,6 +52,21 @@ namespace PMSkaven.Gatherings
             transition2.AddPreAction(new TransitionAction_Custom((Action) delegate { ApplyOutcome(1f); }));
             stateGraph.AddTransition(transition2);
             return stateGraph;
+        }
+
+        protected override bool ShouldBeCalledOff()
+        {
+            return base.ShouldBeCalledOff() || (lord.ticksInToil > 16000 && lord.ownedPawns.Count < 3);
+        }
+
+        public override void Notify_PawnAdded(Pawn p)
+        {
+            base.Notify_PawnAdded(p);
+        }
+
+        public override void Notify_PawnLost(Pawn p, PawnLostCondition condition)
+        {
+            base.Notify_PawnLost(p, condition);
         }
 
         TaggedString TranslateString(string str, bool capitalizeFirst=true)
@@ -105,7 +121,7 @@ namespace PMSkaven.Gatherings
         {
             base.ExposeData();
 
-            Scribe_References.Look(ref target, nameof(target)); 
+            Scribe_References.Look(ref target, nameof(target));
         }
 
         protected override LordToil CreateGatheringToil(IntVec3 spot, Pawn organizer, GatheringDef gatheringDef)
