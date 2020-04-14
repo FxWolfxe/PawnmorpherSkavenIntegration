@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Pawnmorph;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -19,10 +20,43 @@ namespace PMSkaven.Gatherings
         public override bool CanExecute(Map map, Pawn organizer = null)
         {
             bool any = PawnsFinder.AllMaps_PrisonersOfColony.Any(IsValidTarget);
-            if (!any) Log.Message("unable to find suitable prisoner");
+            
             return base.CanExecute(map, organizer)
                 && any
                 && map.mapPawns.FreeColonists.Count(IsValidParticipant) >= PARTICIPANT_COUNT;
+        }
+
+        private const string NO_ORGANIZER = "NoHeadSkaven";
+        private const string NOT_ENOUGH_SKAVEN = "NotEnoughSkaven";
+        private const string NO_VALID_TARGET = "NoValidSkavenTfTarget"; 
+        public bool CanExecute(Map map, [CanBeNull]  Pawn organizer, out string reason)
+        {
+            if (organizer == null)
+            {
+                reason = NO_ORGANIZER.Translate();
+                return false; 
+            }
+
+            if (!base.CanExecute(map, organizer))
+            {
+                reason = "unknown";
+                return false; 
+            }
+
+            if (!PawnsFinder.AllMaps_PrisonersOfColony.Any(IsValidTarget))
+            {
+                reason = NO_VALID_TARGET.Translate();
+                return false; 
+            }
+
+            if (map.mapPawns.FreeColonists.Count(IsValidParticipant) < PARTICIPANT_COUNT)
+            {
+                reason = NOT_ENOUGH_SKAVEN.Translate();
+                return false; 
+            }
+
+            reason = "";
+            return true; 
         }
 
         bool IsValidParticipant(Pawn pawn)

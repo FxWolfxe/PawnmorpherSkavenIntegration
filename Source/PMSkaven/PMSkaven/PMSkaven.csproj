@@ -153,6 +153,7 @@
     <Compile Include="PMSkavenMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PSDutyDefOf.cs" />
+    <Compile Include="PSGatheringDefOf.cs" />
     <Compile Include="PSHediffDefOf.cs" />
     <Compile Include="PSJobDefOf.cs" />
     <Compile Include="PSThingDefOf.cs" />

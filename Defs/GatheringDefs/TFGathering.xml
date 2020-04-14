@@ -2,7 +2,7 @@
     <GatheringDef>
         <defName>SkavenTFGathering</defName>
         <label>tf ritual</label>
-        <randomSelectionWeight>1</randomSelectionWeight>
+        <randomSelectionWeight>0</randomSelectionWeight>
         <gatherSpotDefs>
             <li>SkavenAlter</li>
         </gatherSpotDefs>
