@@ -19,6 +19,14 @@ namespace PMSkaven.Gatherings
 
         }
 
+        public override void Init()
+        {
+            Data.spectateRect = CellRect.CenteredOn(spot, 0);
+            Rot4 rotation = spot.GetFirstThing<Building_SkavenAlter>(organizer.MapHeld).Rotation;
+            Data.spectateRectAllowedSides = SpectateRectSide.All & ~rotation.Opposite.AsSpectateSide;
+            Data.spectateRectPreferredSide = rotation.AsSpectateSide;
+        }
+
         public override ThinkTreeDutyHook VoluntaryJoinDutyHookFor(Pawn p)
         {
             if (p == organizer)
