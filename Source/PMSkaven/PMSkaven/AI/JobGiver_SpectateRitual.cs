@@ -23,18 +23,9 @@ namespace PMSkaven.AI
             var lordJob = lord?.LordJob as LordJob_TfRitual;
             if (lordJob == null) return null;
 
-            var index = lord.ownedPawns.IndexOf(pawn);
-            if (index == -1 || index >= Worker_TfRitual.PARTICIPANT_COUNT)
-            {
-                return null; 
-            }
-
-            var alter = duty.focusSecond.Thing as Building_SkavenAlter;
-            if (alter == null) return null;
-            var cell = alter.PeripheralCells[index];
-
+            var cell = lordJob.GetSpectateCellForPawn(pawn); 
             
-            return JobMaker.MakeJob(PSJobDefOf.SpectateRitual, cell, alter.InteractionCell + new IntVec3(0, -1, 0)); 
+            return JobMaker.MakeJob(PSJobDefOf.SpectateRitual, cell, lordJob.Alter.InteractionCell + new IntVec3(0, -1, 0)); 
         }
     }
 }

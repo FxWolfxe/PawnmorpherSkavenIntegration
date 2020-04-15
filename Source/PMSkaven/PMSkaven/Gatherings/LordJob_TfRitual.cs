@@ -26,6 +26,24 @@ namespace PMSkaven.Gatherings
             this.target = target;
         }
 
+        public Building_SkavenAlter Alter => spot.GetFirstThing<Building_SkavenAlter>(Map);
+
+
+        
+        public IntVec3 GetSpectateCellForPawn(Pawn pawn)
+        {
+            var cells = Alter.PeripheralCells;
+            var idx = lord.ownedPawns.FindIndex(p => p == pawn);
+            if (idx < 0)
+            {
+                Log.Warning($"unable to find cell for non owned pawn {pawn.Name}");
+                return IntVec3.Invalid; 
+            }
+
+            idx = idx % cells.Count;
+            return cells[idx]; 
+        }
+
         public override StateGraph CreateGraph()
         {
             var stateGraph = new StateGraph();
@@ -75,7 +93,36 @@ namespace PMSkaven.Gatherings
             if (capitalizeFirst) s = s.CapitalizeFirst();
             return s; 
         }
+#if false
+        
 
+        public override void LordJobTick()
+        {
+            base.LordJobTick();
+
+
+            var alter = spot.GetFirstThing<Building_SkavenAlter>(Map);
+            if (alter == null) return;
+
+            Rand.PushState(alter.thingIDNumber);
+            try
+            {
+
+                foreach (IntVec3 cell in alter.PeripheralCells)
+                {
+                    var pos = GenThing.TrueCenter(cell, alter.Rotation, alter.RotatedSize, alter.def.Altitude);
+                    CellRenderer.RenderSpot(pos, Rand.Range(0,1f));
+                }
+            }
+            finally
+            {
+                Rand.PopState();
+            }
+
+
+
+        }
+#endif
 
         protected override void ApplyOutcome(float progress)
         {
@@ -115,6 +162,8 @@ namespace PMSkaven.Gatherings
             }
 
         }
+
+        
 
 
         public override void ExposeData()
