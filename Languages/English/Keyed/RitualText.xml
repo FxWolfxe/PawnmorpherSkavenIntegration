@@ -36,4 +36,7 @@
     -->
     <SkavenTFRitualBadEndLabel>The Horned Rat is Displeased</SkavenTFRitualBadEndLabel>
     <SkavenTFRitualBadEndDescription>Your worthless skaven have messed up the ritual in a most egregious manner! They must be punished for losing the Horned One's Favour, toss them to the slaverats for what meager morsels they might provide! This affront can not be allowed to happen again!</SkavenTFRitualBadEndDescription>
+    <NoHeadSkaven>No available leader</NoHeadSkaven>
+    <NotEnoughSkaven>Not enough skaven colonists</NotEnoughSkaven>
+    <NoValidSkavenTfTarget>No valid prisoners available</NoValidSkavenTfTarget>
 </LanguageData>
