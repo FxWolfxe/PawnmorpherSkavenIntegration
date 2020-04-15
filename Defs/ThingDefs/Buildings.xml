@@ -7,9 +7,9 @@
         <interactionCellOffset>(0,0,1)</interactionCellOffset>
         <rotatable>false</rotatable>
         <graphicData>
-          <texPath>Things/Building/Furniture/Table3x3</texPath>
-          <graphicClass>Graphic_Multi</graphicClass>
-          <drawSize>(5, 5)</drawSize>
+          <texPath>Things/Building/SkavenAlter</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+          <drawSize>(3.2, 3.2)</drawSize>
           <damageData>
             <cornerTL>Damage/Corner</cornerTL>
             <cornerTR>Damage/Corner</cornerTR>
