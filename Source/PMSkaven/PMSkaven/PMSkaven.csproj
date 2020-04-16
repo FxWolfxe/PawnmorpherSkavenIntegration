@@ -160,6 +160,7 @@
     <Compile Include="RitualUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="UI\" />
     <Folder Include="Utilities\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

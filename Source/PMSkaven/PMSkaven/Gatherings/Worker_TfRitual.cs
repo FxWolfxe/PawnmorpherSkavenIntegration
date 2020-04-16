@@ -4,7 +4,6 @@
 using System;
 using System.Linq;
 using JetBrains.Annotations;
-using Pawnmorph;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -59,6 +58,7 @@ namespace PMSkaven.Gatherings
             return true;
         }
 
+
         public override bool TryExecute(Map map, Pawn organizer = null)
         {
             if (organizer == null)
@@ -68,7 +68,13 @@ namespace PMSkaven.Gatherings
 
             Pawn target = PawnsFinder.AllMaps_PrisonersOfColony.Where(RitualUtilities.IsValidRitualTarget).FirstOrDefault();
             if (target == null) return false;
+            return TryExecute(organizer, target);
+        }
 
+        public bool TryExecute(Pawn organizer, Pawn target)
+        {
+            if (organizer == null || !TryFindGatherSpot(organizer, out IntVec3 spot))
+                return false;
             LordJob lordJob1 = CreateLordJob(spot, organizer, target);
             Faction faction = organizer.Faction;
             LordJob lordJob2 = lordJob1;
@@ -139,9 +145,5 @@ namespace PMSkaven.Gatherings
             spot = default;
             return false;
         }
-
-     
-
-
     }
 }

@@ -73,7 +73,7 @@ namespace PMSkaven
 
             var cmd = new Command_Action
             {
-                action = StartRitual
+                action = CreateSubMenu
             };
             List<Pawn> skaven = GetAllLeaders().ToList();
             GatheringDef gDef = PSGatheringDefOf.SkavenTFGathering;
@@ -94,17 +94,25 @@ namespace PMSkaven
             yield return cmd;
         }
 
-        private IEnumerable<Pawn> GetAllLeaders()
+        private FloatMenuOption CreateOption(Pawn p, Pawn leader)
         {
-            foreach (Pawn pawn in Map.listerThings.ThingsOfDef(PSThingDefOf.Alien_Skaven).OfType<Pawn>())
+            var worker = (Worker_TfRitual) PSGatheringDefOf.SkavenTFGathering.Worker;
+            return new FloatMenuOption(p.Name.ToStringShort, () =>
             {
-                if(!pawn.IsValidRitualLeader()) continue;
-                //TODO check if the skaven is a valid 'leander'
-                yield return pawn;
-            }
+                try
+                {
+                    if (!worker.TryExecute(leader, p))
+                        Log.Warning($"unable to start ritual with {leader.Name} and target {p.Name}");
+                }
+                catch (Exception e)
+                {
+                    Log.Error($"caught {e.GetType().Name} while executing ritual gathering!\n{e.ToString().Indented("|\t")}");
+                }
+            });
         }
 
-        private void StartRitual()
+
+        private void CreateSubMenu()
         {
             Pawn goodSkaven = GetAllLeaders().FirstOrDefault();
             if (goodSkaven == null)
@@ -113,11 +121,31 @@ namespace PMSkaven
                 return;
             }
 
-            GatheringDef gDef = PSGatheringDefOf.SkavenTFGathering;
-            if (!gDef.Worker.CanExecute(Map, goodSkaven))
-                Log.Warning($"unable to start ritual because skaven returned by {nameof(GetAllLeaders)} is not a valid leader!");
+            try
+            {
+                List<FloatMenuOption> options = GetAllTargets().Select(p => CreateOption(p, goodSkaven)).ToList();
+                var menu = new FloatMenu(options);
+                Find.WindowStack.Add(menu);
+            }
+            catch (Exception e)
+            {
+                Log.Error($"caught {e.GetType().Name} while trying to create sub menu!\n{e.ToString().Indented("|\t")}");
+            }
+        }
 
-            if (!gDef.Worker.TryExecute(Map, goodSkaven)) Log.Warning($"Could not start ritual with {goodSkaven.Name} as leader");
+        private IEnumerable<Pawn> GetAllLeaders()
+        {
+            foreach (Pawn pawn in Map.listerThings.ThingsOfDef(PSThingDefOf.Alien_Skaven).OfType<Pawn>())
+            {
+                if (!pawn.IsValidRitualLeader()) continue;
+                yield return pawn;
+            }
+        }
+
+
+        private IEnumerable<Pawn> GetAllTargets()
+        {
+            return Map.mapPawns.AllPawnsSpawned.Where(RitualUtilities.IsValidRitualTarget);
         }
     }
 }
