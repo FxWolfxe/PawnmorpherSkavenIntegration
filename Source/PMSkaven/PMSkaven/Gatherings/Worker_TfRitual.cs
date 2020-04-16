@@ -2,7 +2,6 @@
 // last updated 03/26/2020  2:35 PM
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph;
@@ -17,63 +16,57 @@ namespace PMSkaven.Gatherings
     {
         public const int PARTICIPANT_COUNT = 4;
 
-        public override bool CanExecute(Map map, Pawn organizer = null)
-        {
-            bool any = PawnsFinder.AllMaps_PrisonersOfColony.Any(IsValidTarget);
-            
-            return base.CanExecute(map, organizer)
-                && any
-                && map.mapPawns.FreeColonists.Count(IsValidParticipant) >= PARTICIPANT_COUNT;
-        }
-
         private const string NO_ORGANIZER = "NoHeadSkaven";
         private const string NOT_ENOUGH_SKAVEN = "NotEnoughSkaven";
-        private const string NO_VALID_TARGET = "NoValidSkavenTfTarget"; 
-        public bool CanExecute(Map map, [CanBeNull]  Pawn organizer, out string reason)
+        private const string NO_VALID_TARGET = "NoValidSkavenTfTarget";
+
+        public override bool CanExecute(Map map, Pawn organizer = null)
+        {
+            bool any = PawnsFinder.AllMaps_PrisonersOfColony.Any(RitualUtilities.IsValidRitualTarget);
+
+            return base.CanExecute(map, organizer)
+                && any
+                && map.mapPawns.FreeColonists.Count(RitualUtilities.IsValidRitualParticipant) >= PARTICIPANT_COUNT;
+        }
+
+        public bool CanExecute(Map map, [CanBeNull] Pawn organizer, out string reason)
         {
             if (organizer == null)
             {
                 reason = NO_ORGANIZER.Translate();
-                return false; 
+                return false;
             }
 
             if (!base.CanExecute(map, organizer))
             {
                 reason = "unknown";
-                return false; 
+                return false;
             }
 
-            if (!PawnsFinder.AllMaps_PrisonersOfColony.Any(IsValidTarget))
+            if (!PawnsFinder.AllMaps_PrisonersOfColony.Any(RitualUtilities.IsValidRitualTarget))
             {
                 reason = NO_VALID_TARGET.Translate();
-                return false; 
+                return false;
             }
 
-            if (map.mapPawns.FreeColonists.Count(IsValidParticipant) < PARTICIPANT_COUNT)
+            if (map.mapPawns.FreeColonists.Count(RitualUtilities.IsValidRitualParticipant) < PARTICIPANT_COUNT)
             {
                 reason = NOT_ENOUGH_SKAVEN.Translate();
-                return false; 
+                return false;
             }
 
             reason = "";
-            return true; 
+            return true;
         }
 
-        bool IsValidParticipant(Pawn pawn)
-        {
-            if (!pawn.IsColonist) return false;
-            return pawn.def == PSThingDefOf.Alien_Skaven; 
-        }
-        
         public override bool TryExecute(Map map, Pawn organizer = null)
         {
             if (organizer == null)
                 organizer = FindOrganizer(map);
-            IntVec3 spot;
-            if (organizer == null || !TryFindGatherSpot(organizer, out spot))
+            if (organizer == null || !TryFindGatherSpot(organizer, out IntVec3 spot))
                 return false;
 
-            Pawn target = PawnsFinder.AllMaps_PrisonersOfColony.Where(IsValidTarget).FirstOrDefault();
+            Pawn target = PawnsFinder.AllMaps_PrisonersOfColony.Where(RitualUtilities.IsValidRitualTarget).FirstOrDefault();
             if (target == null) return false;
 
             LordJob lordJob1 = CreateLordJob(spot, organizer, target);
@@ -116,13 +109,11 @@ namespace PMSkaven.Gatherings
         {
             string letterLabel = def.letterTitle;
 
-
             TaggedString letterText = def.letterText.Formatted(
                                                                organizer.Named(nameof(organizer)),
                                                                target.Named(nameof(target)));
-            Find.LetterStack.ReceiveLetter( letterLabel, letterText, LetterDefOf.PositiveEvent,
+            Find.LetterStack.ReceiveLetter(letterLabel, letterText, LetterDefOf.PositiveEvent,
                                            new TargetInfo(spot, organizer.Map));
-
         }
 
 
@@ -149,12 +140,8 @@ namespace PMSkaven.Gatherings
             return false;
         }
 
+     
 
-        private bool IsValidTarget(Pawn pawn)
-        {
-            return pawn.IsPrisonerOfColony
-                && pawn.def != PSThingDefOf.Alien_Skaven
-                && MorphUtilities.HybridsAreEnabledFor(pawn.def);
-        }
+
     }
 }

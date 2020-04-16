@@ -98,7 +98,7 @@ namespace PMSkaven
         {
             foreach (Pawn pawn in Map.listerThings.ThingsOfDef(PSThingDefOf.Alien_Skaven).OfType<Pawn>())
             {
-                if (pawn.Faction != Faction.OfPlayer || pawn.Downed || pawn.Dead || !pawn.Spawned) continue;
+                if(!pawn.IsValidRitualLeader()) continue;
                 //TODO check if the skaven is a valid 'leander'
                 yield return pawn;
             }

@@ -157,6 +157,7 @@
     <Compile Include="PSHediffDefOf.cs" />
     <Compile Include="PSJobDefOf.cs" />
     <Compile Include="PSThingDefOf.cs" />
+    <Compile Include="RitualUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Utilities\" />
