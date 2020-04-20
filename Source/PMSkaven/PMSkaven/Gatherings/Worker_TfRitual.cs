@@ -13,7 +13,7 @@ namespace PMSkaven.Gatherings
 {
     public class Worker_TfRitual : GatheringWorker_Speech
     {
-        public const int PARTICIPANT_COUNT = 4;
+        public const int PARTICIPANT_COUNT = 12;
 
         private const string NO_ORGANIZER = "NoHeadSkaven";
         private const string NOT_ENOUGH_SKAVEN = "NotEnoughSkaven";
