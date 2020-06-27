@@ -39,8 +39,10 @@ namespace PMSkaven.AI
 
             Toil toil2 = Toils_Haul.StartCarryThing(TakeeIndex);
             yield return toil2;
-            yield return Toils_Goto.GotoThing(AlterIndex, PathEndMode.Touch);
-          
+            var carryToil = Toils_Haul.CarryHauledThingToCell(AlterIndex);
+            yield return carryToil;
+            var eToil = Toils_Haul.PlaceHauledThingInCell(AlterIndex, carryToil, false);
+            yield return eToil;
             Toil toil4 = new Toil();
 
             void DropTarget()
