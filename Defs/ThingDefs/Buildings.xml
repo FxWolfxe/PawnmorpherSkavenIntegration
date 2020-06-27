@@ -115,7 +115,6 @@
     <pathCost>30</pathCost>
     <designationHotKey>Misc7</designationHotKey>
     <fillPercent>0.35</fillPercent>
-    <defaultPlacingRot>South</defaultPlacingRot>
     <building>
       <isSittable>true</isSittable>
     </building>
