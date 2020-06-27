@@ -48,7 +48,7 @@ namespace PMSkaven
             try
             {
                 ls.Label($"{REQUIRED_SKAVEN.Translate()}:{settings.requiredSkaven}");
-                settings.requiredSkaven = (int) ls.Slider(settings.requiredSkaven, 1, 12);
+                settings.requiredSkaven = (int) ls.Slider(settings.requiredSkaven, 1, 11);
                 ls.CheckboxLabeled(ANY_RACE_PARTICIPATE.Translate(), ref settings.anyRaceCanParticipate);
                 if (settings.anyRaceCanParticipate)
                 {
@@ -60,6 +60,11 @@ namespace PMSkaven
                 ls.End();
             }
 
+        }
+
+        public override string SettingsCategory()
+        {
+            return "PMS_Settings".Translate();
         }
     }
 
