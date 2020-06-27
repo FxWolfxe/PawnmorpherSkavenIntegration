@@ -48,8 +48,8 @@ namespace PMSkaven
                 {
                     var thingAt = cornerCell.GetFirstThing<Building>(Map); 
                     if(thingAt == null) continue;
-                    //only way to check for a chair is a building that adds comfort 
-                    if (thingAt.def.statBases.MakeSafe().Any(s => s.stat == StatDefOf.Comfort)) return true; 
+                    
+                    if (thingAt.def == PSThingDefOf.PMS_SkavenKingChair) return true; 
 
                 }
 

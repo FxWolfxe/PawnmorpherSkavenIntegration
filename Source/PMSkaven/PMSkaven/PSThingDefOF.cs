@@ -11,6 +11,8 @@ namespace PMSkaven
     {
         public static ThingDef Alien_Skaven;
 
+        public static ThingDef PMS_SkavenKingChair; 
+
         static PSThingDefOf()
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(ThingDef));
