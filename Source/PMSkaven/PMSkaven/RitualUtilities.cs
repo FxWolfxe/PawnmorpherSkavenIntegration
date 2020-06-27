@@ -14,7 +14,7 @@ namespace PMSkaven
         public static bool IsValidRitualParticipant([NotNull] this Pawn pawn)
         {
             if (pawn.Faction != Faction.OfPlayer || pawn.Downed || pawn.Dead || !pawn.Spawned) return false;
-            return pawn.def == PSThingDefOf.Alien_Skaven;
+            return  pawn.def == PSThingDefOf.Alien_Skaven || PMSkavenMod.AnyRaceCanParticipate;
         }
 
         public static bool IsValidRitualLeader([NotNull] this Pawn pawn)
@@ -22,8 +22,7 @@ namespace PMSkaven
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (!IsValidRitualParticipant(pawn)) return false;
 
-            //TODO leader qualifications 
-            return true;
+            return pawn.def == PSThingDefOf.Alien_Skaven || PMSkavenMod.AnyRaceCanLead;
 
         }
 

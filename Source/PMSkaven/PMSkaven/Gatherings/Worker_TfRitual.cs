@@ -13,7 +13,6 @@ namespace PMSkaven.Gatherings
 {
     public class Worker_TfRitual : GatheringWorker_Speech
     {
-        public const int PARTICIPANT_COUNT = 12;
 
         private const string NO_ORGANIZER = "NoHeadSkaven";
         private const string NOT_ENOUGH_SKAVEN = "NotEnoughSkaven";
@@ -25,7 +24,7 @@ namespace PMSkaven.Gatherings
 
             return base.CanExecute(map, organizer)
                 && any
-                && map.mapPawns.FreeColonists.Count(RitualUtilities.IsValidRitualParticipant) >= PARTICIPANT_COUNT;
+                && map.mapPawns.FreeColonists.Count(RitualUtilities.IsValidRitualParticipant) >= PMSkavenMod.RequiredNumberOfSkaven;
         }
 
         private const string NO_CHAIR_REASON = "NoChairForRat"; 
@@ -58,7 +57,7 @@ namespace PMSkaven.Gatherings
                 return false;
             }
 
-            if (map.mapPawns.FreeColonists.Count(RitualUtilities.IsValidRitualParticipant) < PARTICIPANT_COUNT)
+            if (map.mapPawns.FreeColonists.Count(RitualUtilities.IsValidRitualParticipant) < PMSkavenMod.RequiredNumberOfSkaven)
             {
                 reason = NOT_ENOUGH_SKAVEN.Translate();
                 return false;

@@ -23,7 +23,7 @@ namespace PMSkaven.AI
             //more then 11 skaven can join 
             //the extra ones 
             var index = lord.ownedPawns.IndexOf(pawn);
-            return index != -1 && index < Worker_TfRitual.PARTICIPANT_COUNT; 
+            return index != -1 && index < PMSkavenMod.RequiredNumberOfSkaven; 
 
 
         }
