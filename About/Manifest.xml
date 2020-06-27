@@ -2,10 +2,9 @@
 	<identifier>Pawnmorpher: Skaven Integration</identifier>
 	<version>0.0.1</version>
 	<dependencies>
-		<li>Humanoid Alien Races 2.0</li>
-		<li>HugsLib</li>
-		<li>Pawnmorpher</li>
-		<li>Warhammer: Skaven</li>
+		<li>erdelf.HumanoidAlienRaces</li>
+		<li>tachyonite.pawnmorpher</li>
+		<li>Kompadt.Warhammer.Skaven</li>
 	</dependencies>
 	<incompatibleWith>
 		<li>FacialStuff1.0</li>

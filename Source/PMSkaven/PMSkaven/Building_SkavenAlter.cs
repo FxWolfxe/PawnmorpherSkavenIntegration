@@ -4,6 +4,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
+using Pawnmorph.Utilities;
 using PMSkaven.Gatherings;
 using RimWorld;
 using Verse;
@@ -13,6 +15,47 @@ namespace PMSkaven
     public class Building_SkavenAlter : Building
     {
         private IntVec3[] _peripheralCells;
+
+        private IntVec3[] _cornerCells;
+
+        [NotNull]
+        public IReadOnlyList<IntVec3> CornerCells
+        {
+            get
+            {
+                if (_cornerCells == null)
+                {
+                    _cornerCells = new IntVec3[4];
+
+                    var pi = InteractionCell;
+
+                    _cornerCells[0] = pi + new IntVec3(2, 0, 1);
+                    _cornerCells[1] = pi + new IntVec3(2, 0, -3);
+                    _cornerCells[2] = pi + new IntVec3(-2, 0, 1);
+                    _cornerCells[3] = pi + new IntVec3(-2, 0, -3);
+                }
+
+                return _cornerCells; 
+            }
+        }
+
+
+        public bool HasChair
+        {
+            get
+            {
+                foreach (IntVec3 cornerCell in CornerCells)
+                {
+                    var thingAt = cornerCell.GetFirstThing<Building>(Map); 
+                    if(thingAt == null) continue;
+                    //only way to check for a chair is a building that adds comfort 
+                    if (thingAt.def.statBases.MakeSafe().Any(s => s.stat == StatDefOf.Comfort)) return true; 
+
+                }
+
+                return false; 
+            }
+        }
 
         public IReadOnlyList<IntVec3> PeripheralCells
         {
@@ -83,7 +126,7 @@ namespace PMSkaven
                 var worker = (Worker_TfRitual) gDef.Worker;
 
 
-                if (!worker.CanExecute(Map, skaven.FirstOrDefault(), out string reason)) cmd.Disable(reason);
+                if (!worker.CanExecute(Map, this,skaven.FirstOrDefault(), out string reason)) cmd.Disable(reason);
             }
             catch (InvalidCastException e)
             {

@@ -28,8 +28,18 @@ namespace PMSkaven.Gatherings
                 && map.mapPawns.FreeColonists.Count(RitualUtilities.IsValidRitualParticipant) >= PARTICIPANT_COUNT;
         }
 
-        public bool CanExecute(Map map, [CanBeNull] Pawn organizer, out string reason)
+        private const string NO_CHAIR_REASON = "NoChairForRat"; 
+
+        public bool CanExecute(Map map, [NotNull] Building_SkavenAlter alter, [CanBeNull] Pawn organizer, out string reason)
         {
+            if (alter == null) throw new ArgumentNullException(nameof(alter));
+
+            if (!alter.HasChair)
+            {
+                reason = NO_CHAIR_REASON.Translate();
+                return false; 
+            }
+
             if (organizer == null)
             {
                 reason = NO_ORGANIZER.Translate();
@@ -75,6 +85,9 @@ namespace PMSkaven.Gatherings
         {
             if (organizer == null || !TryFindGatherSpot(organizer, out IntVec3 spot))
                 return false;
+            var alter = spot.GetFirstThing<Building_SkavenAlter>(organizer.Map);
+            //skaven alter must have a chair 
+            if (alter?.HasChair != true) return false; 
             LordJob lordJob1 = CreateLordJob(spot, organizer, target);
             Faction faction = organizer.Faction;
             LordJob lordJob2 = lordJob1;
@@ -134,10 +147,12 @@ namespace PMSkaven.Gatherings
             }
 
             foreach (CompGatherSpot compGatherSpot in gatherSpot.activeSpots.MakeSafe())
-                if (compGatherSpot.parent is Building_SkavenAlter)
+                if (compGatherSpot.parent is Building_SkavenAlter alter && alter.HasChair)
                 {
                     ThingWithComps p = compGatherSpot.parent;
+                    
                     spot = p.InteractionCell;
+
                     return true;
                 }
 
