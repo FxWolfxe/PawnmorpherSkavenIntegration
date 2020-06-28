@@ -1,0 +1,12 @@
+<Patch>
+    <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Skaven"]</xpath>
+        <value>
+            <comps>
+                <li>
+                    <compClass>Pawnmorph.GraphicSys.InitialGraphicsComp</compClass>
+                </li>
+            </comps>
+        </value>
+    </Operation>
+</Patch>
